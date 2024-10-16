@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collections - Hip Hop Cargo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 76px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8) !important;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.5rem 1rem !important;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .filter-buttons {
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid #343a40;
+        }
+
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: #343a40;
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .filter-btn:hover::before {
+            left: 0;
+        }
+
+        .filter-btn:hover {
+            color: #fff;
+        }
+
+        .filter-btn.active {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        .product-card {
+            border: none;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 2rem;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card img {
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .product-card .card-body {
+            padding: 1.5rem;
+        }
+
+        .product-card .card-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-card .card-text {
+            font-size: 1.25rem;
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+
+        .btn-add-to-cart {
+            background-color: #343a40;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-add-to-cart::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-add-to-cart:hover::before {
+            left: 100%;
+        }
+
+        .btn-add-to-cart:hover {
+            background-color: #23272b;
+        }
+
+        footer {
+             background-color: #000;
+             color: white;
+             padding: 3rem 0;
+             margin-top: auto; /* This pushes the footer down */
+    }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Hip Hop Cargo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="collection.html">Collections</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Lookbook</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-5">Our Collections</h1>
+
+        <div class="filter-buttons text-center">
+            <button class="btn filter-btn active" data-filter="all">All</button>
+            <button class="btn filter-btn" data-filter="jeans">Jeans</button>
+            <button class="btn filter-btn" data-filter="jackets">Jackets</button>
+            <button class="btn filter-btn" data-filter="shirts">Shirts</button>
+            <button class="btn filter-btn" data-filter="accessories">Accessories</button>
+        </div>
+
+        <div class="row" id="product-container">
+            <!-- Jeans -->
+            <div class="col-md-4 product-item" data-category="jeans">
+                <div class="card product-card">
+                    <img src="Images/1.jpeg" class="card-img-top" alt="Elegant Denim Jeans">
+                    <div class="card-body">
+                        <h5 class="card-title">Elegant Denim Jeans</h5>
+                        <p class="card-text">R129.99</p>
+                        <button class="btn btn-add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 product-item" data-category="jeans">
+                <div class="card product-card">
+                    <img src="Images/2.jpeg" class="card-img-top" alt="Classic Jeans (N)">
+                    <div class="card-body">
+                        <h5 class="card-title">Classic Jeans (N)</h5>
+                        <p class="card-text">R89.99</p>
+                        <button class="btn btn-add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Jackets -->
+            <div class="col-md-4 product-item" data-category="jackets">
+                <div class="card product-card">
+                    <img src="Images/5.jpeg" class="card-img-top" alt="Stylish Denim Jacket">
+                    <div class="card-body">
+                        <h5 class="card-title">Stylish Denim Jacket</h5>
+                        <p class="card-text">R159.99</p>
+                        <button class="btn btn-add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more product items for other categories -->
+        </div>
+    </div>
+
+    <footer>
+        <div class="container text-center">
+            <div class="social-icons mb-4">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>&copy; 2024 Hip Hop Cargo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const productItems = document.querySelectorAll('.product-item');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.getAttribute('data-filter');
+                    
+                    productItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+
+                    // Toggle active class on filter buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                });
+            });
+
+            // Add to Cart button animation
+            const addToCartButtons = document.querySelectorAll('.btn-add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.classList.add('clicked');
+                    setTimeout(() => {
+                        this.classList.remove('clicked');
+                    }, 300);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
