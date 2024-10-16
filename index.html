@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOGUE VAULT - Redefining Style</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 76px; /* Added to account for fixed navbar */
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8) !important;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.5rem 1rem !important;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .dropdown-menu {
+            background-color: rgba(0, 0, 0, 0.9);
+            border: none;
+        }
+
+        .dropdown-item {
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-input {
+            border: none;
+            border-bottom: 2px solid #fff;
+            background-color: transparent;
+            color: #fff;
+            padding: 0.5rem 2rem 0.5rem 0.5rem;
+            width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            width: 250px;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            border: none;
+            color: #fff;
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 1.2rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #dc3545;
+            color: #fff;
+            border-radius: 50%;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .hero {
+            height: calc(100vh - 76px); /* Adjusted for fixed navbar */
+            background-image: url('/images/Hero.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-outline-light {
+            border-width: 2px;
+            font-weight: 700;
+            padding: 0.75rem 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .featured-products {
+            padding: 5rem 0;
+        }
+
+        .product-card {
+            border: none;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 2rem;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card img {
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .product-card .card-body {
+            padding: 1.5rem;
+        }
+
+        .product-card .card-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-card .card-text {
+            font-size: 1.25rem;
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary {
+            background-color: #000;
+            border-color: #000;
+            font-weight: 700;
+            padding: 0.75rem 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary:hover {
+            background-color: #333;
+            border-color: #333;
+        }
+
+        footer {
+            background-color: #000;
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Hip Hop Cargo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Collections
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Summer 2024</a></li>
+                            <li><a class="dropdown-item" href="#">Autumn Vibes</a></li>
+                            <li><a class="dropdown-item" href="#">Winter Elegance</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Lookbook</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                </ul>
+                <form class="d-flex ms-3 search-box">
+                    <input class="search-input" type="search" placeholder="Search" aria-label="Search">
+                    <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                <div class="ms-3 cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Redefine Your Style</h1>
+            <p>Discover the Jozi's latest trends and express your unique fashion sense.</p>
+            <a href="#" class="btn btn-outline-light btn-lg">Explore Collections</a>
+        </div>
+    </section>
+
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="text-center mb-5">Featured Pieces</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <img src="Images/1.jpeg" class="card-img-top" alt="Elegant Denim Jeans">
+                        <div class="card-body">
+                            <h5 class="card-title">Elegant Denim Jeans</h5>
+                            <p class="card-text">R129.99</p>
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <img src="Images/2.jpeg" class="card-img-top" alt="Classic Jeans (N)">
+                        <div class="card-body">
+                            <h5 class="card-title">Classic Jeans (N)</h5>
+                            <p class="card-text">R89.99</p>
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <img src="Images/3.jpeg" class="card-img-top" alt="Stylish Demin Jeans (F)">
+                        <div class="card-body">
+                            <h5 class="card-title">Stylish Demin Jeans (F)</h5>
+                            <p class="card-text">R159.99</p>
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <img src="Images/4.jpeg" class="card-img-top" alt="Awesome Denim Jeans">
+                        <div class="card-body">
+                            <h5 class="card-title">Awesome Denim Jeans</h5>
+                            <p class="card-text">R159.99</p>
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <img src="Images/5.jpeg" class="card-img-top" alt="Stylish Denim Jacket">
+                        <div class="card-body">
+                            <h5 class="card-title">Stylish Denim Jacket</h5>
+                            <p class="card-text">R159.99</p>
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <img src="Images/6.jpeg" class="card-img-top" alt="Stylish Denim Jacket">
+                        <div class="card-body">
+                            <h5 class="card-title">Stylish Denim Jacket</h5>
+                            <p class="card-text">R159.99</p>
+                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container text-center">
+            <div class="social-icons mb-4">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>&copy; 2024 Hip Hop Cargo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.querySelector('.navbar');
+            const searchInput = document.querySelector('.search-input');
+            const cartCount = document.querySelector('.cart-count');
+            let cartItems = 0;
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.9) !important';
+                    navbar.style.padding = '0.5rem 1rem';
+                } else {
+                    navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.8) !important';
+                    navbar.style.padding = '1rem';
+                }
+            });
+
+            searchInput.addEventListener('focus', function() {
+                this.placeholder = '';
+            });
+
+            searchInput.addEventListener('blur', function() {
+                this.placeholder = 'Search';
+            });
+
+            // Simulating adding items to cart
+            document.querySelectorAll('.btn-primary').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    cartItems++;
+                    cartCount.textContent = cartItems;
+                    
+                    // Add animation to cart icon
+                    cartCount.style.transform = 'scale(1.5)';
+                    setTimeout(() => {
+                        cartCount.style.transform = 'scale(1)';
+                    }, 300);
+                });
+            });
+
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
