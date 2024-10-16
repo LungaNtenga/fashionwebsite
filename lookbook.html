@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lookbook - Hip Hop Cargo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 76px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8) !important;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.5rem 1rem !important;
+        }
+
+        .hero {
+            background-image: url('/Images/maboneng.jpeg'); /* New hero image */
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            flex-direction: column; /* Stack items vertically */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+            z-index: 1;
+        }
+
+        .hero h1, .hero p {
+            position: relative;
+            z-index: 2; /* Ensure text is above the overlay */
+            margin: 0; /* Remove default margins */
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.5rem; /* Adjusted font size for better readability */
+            margin-top: 1rem; /* Added margin for spacing */
+        }
+
+        .magazine-section {
+            padding: 2rem 0;
+        }
+
+        .magazine-item {
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            background-color: white; /* White background for magazine cards */
+            border: 1px solid #ccc; /* Border for better definition */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .magazine-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .magazine-item:hover {
+            transform: scale(1.05);
+        }
+
+        .magazine-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800; /* Bold title */
+            font-size: 1.5rem; /* Responsive title size */
+            color: #222;
+        }
+
+        .magazine-description {
+            font-size: 1rem; /* Responsive description size */
+            color: #666;
+        }
+
+        .large-image {
+            margin: 2rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .large-image img {
+            width: 100%;
+            height: auto; /* Make image responsive */
+            object-fit: cover; /* Maintain aspect ratio */
+        }
+
+        footer {
+            background-color: #000;
+            color: white;
+            padding: 3rem 0;
+            margin-top: auto;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #f8f9fa;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem; /* Smaller heading on mobile */
+            }
+            .hero p {
+                font-size: 1rem; /* Smaller paragraph on mobile */
+            }
+            .magazine-title {
+                font-size: 1.2rem; /* Smaller title on mobile */
+            }
+            .magazine-description {
+                font-size: 0.9rem; /* Smaller description on mobile */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand {
+                font-size: 1.5rem; /* Smaller brand on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Hip Hop Cargo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="collection.html">Collections</a></li>
+                    <li class="nav-item"><a class="nav-link" href="lookbook.html">Lookbook</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Hip Hop Cargo Lookbook</h1>
+        <p>Located in Maboneng, Johannesburg, Hip Hop Cargo is your go-to shop for the latest streetwear, blending urban style with a vibrant culture.</p>
+    </div>
+
+    <div class="container magazine-section">
+        <h2 class="text-center mb-5">Explore Our Styles</h2>
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div class="magazine-item">
+                    <img src="Images/6.jpeg" alt="Urban Chic" />
+                    <div class="p-3">
+                        <h5 class="magazine-title">Urban Chic</h5>
+                        <p class="magazine-description">Elevate your street style with bold designs and colors.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="magazine-item">
+                    <img src="Images/3.jpeg" alt="Hip Hop Vibes" />
+                    <div class="p-3">
+                        <h5 class="magazine-title">Hip Hop Vibes</h5>
+                        <p class="magazine-description">Capture the essence of hip hop culture with these looks.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="magazine-item">
+                    <img src="Images/4.jpeg" alt="Edgy Styles" />
+                    <div class="p-3">
+                        <h5 class="magazine-title">Edgy Styles</h5>
+                        <p class="magazine-description">Dare to stand out with our edgier fashion pieces.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="large-image">
+            <img src="Images/1.jpeg" alt="Lookbook Feature" /> <!-- New large image -->
+            <div class="p-3">
+                <h5 class="magazine-title">Feature Style: Bold & Vibrant</h5>
+                <p>Step into the spotlight with our latest collection that emphasizes bold patterns and vibrant colors. These pieces are perfect for making a statement, whether you’re hitting the streets or stepping out for a special occasion. Explore the synergy of comfort and style, crafted for the modern individual who embraces creativity.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container text-center">
+            <div class="social-icons mb-4">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>&copy; 2024 Hip Hop Cargo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
