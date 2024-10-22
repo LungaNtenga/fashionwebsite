@@ -51,7 +51,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero {
     height: calc(100vh - 76px);
-    background-image: url('/Images/Hero.png'); /* Updated for consistency */
+    background-image: url('Images/Hero.png'); /* Updated for consistency */
     background-size: cover;
     background-position: center;
     display: flex;
