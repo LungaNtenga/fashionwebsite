@@ -3,152 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lookbook - Hip Hop Cargo</title>
+    <title>HIP HOP CARGO - Redefining Style</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f8f9fa;
-            padding-top: 76px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .navbar {
-            background-color: rgba(0, 0, 0, 0.8) !important;
-            transition: all 0.3s ease;
-        }
-
-        .navbar-brand {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 1.8rem;
-        }
-
-        .nav-link {
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 0.5rem 1rem !important;
-        }
-
-        .hero {
-            background-image: url('/Images/maboneng.jpeg');
-            background-size: cover;
-            background-position: center;
-            height: calc(100vh - 76px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-            position: relative;
-            flex-direction: column;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1;
-        }
-
-        .hero h1, .hero p {
-            position: relative;
-            z-index: 2;
-            margin: 0;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .magazine-section {
-            padding: 5rem 0;
-
-        }
-
-        .magazine-item {
-            margin-bottom: 2rem;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.3s;
-            background-color: white;
-            border: 1px solid #ccc;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .magazine-item img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px 8px 0 0;
-        }
-
-        .magazine-item:hover {
-            transform: scale(1.05);
-        }
-
-        .magazine-title {
-            font-family: 'Playfair Display', serif;
-            font-weight: 800;
-            font-size: 1.5rem;
-            color: #222;
-        }
-
-        .magazine-description {
-            font-size: 1rem;
-            color: #666;
-        }
-
-        .large-image {
-            margin: 2rem 0;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .large-image img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-
-        footer {
-            background-color: #000;
-            color: white;
-            padding: 3rem 0;
-            margin-top: auto;
-        }
-
-        .social-icons a {
-            color: white;
-            font-size: 1.5rem;
-            margin: 0 0.5rem;
-            transition: color 0.3s;
-        }
-
-        .social-icons a:hover {
-            color: #f8f9fa;
-        }
-
-      
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">Hip Hop Cargo</a>
@@ -163,7 +24,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="cart.html">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class="cart-count">0</span>
+                            <span class="cart-count" id="">0</span>
                         </a>
                     </li>
                 </ul>
@@ -171,51 +32,111 @@
         </div>
     </nav>
 
-    <div class="hero">
-        <h1>Hip Hop Cargo Lookbook</h1>
-        <p>Located in Maboneng, Johannesburg, Hip Hop Cargo is your go-to shop for the latest streetwear, blending urban style with a vibrant culture.</p>
-    </div>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Redefine Your Style</h1>
+            <p>Discover the Jozi's latest trends and express your unique fashion sense.</p>
+            <a href="collection.html" class="btn btn-outline-light btn-lg">Explore Collections</a>
+        </div>
+    </section>
 
-    <div class="container magazine-section">
-        <h2 class="text-center mb-5">Explore Our Styles</h2>
-        <div class="row">
-            <div class="col-md-4 col-sm-6">
-                <div class="magazine-item">
-                    <img src="Images/6.jpeg" alt="Urban Chic" />
-                    <div class="p-3">
-                        <h5 class="magazine-title">Urban Chic</h5>
-                        <p class="magazine-description">Elevate your street style with bold designs and colors.</p>
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="text-center mb-5">Featured Pieces</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <img src="Images/1.jpeg" class="card-img-top" alt="Elegant Denim Jeans">
+                        <div class="card-body">
+                            <h5 class="card-title">Elegant Denim Jeans</h5>
+                            <p class="card-text"><span class="previous-price">R149.99</span> R129.99</p>
+                            <a href="#" class="btn btn-primary btn-add-to-cart" data-toggle="modal" data-target="#myModal">Add to Cart</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="magazine-item">
-                    <img src="Images/3.jpeg" alt="Hip Hop Vibes" />
-                    <div class="p-3">
-                        <h5 class="magazine-title">Hip Hop Vibes</h5>
-                        <p class="magazine-description">Capture the essence of hip hop culture with these looks.</p>
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <img src="Images/2.jpeg" class="card-img-top" alt="Classic Jeans (N)">
+                        <div class="card-body">
+                            <h5 class="card-title">Classic Jeans (N)</h5>
+                            <p class="card-text"><span class="previous-price">R99.99</span> R89.99</p>
+                            <a href="#" class="btn btn-primary btn-add-to-cart" data-toggle="modal" data-target="#myModal">Add to Cart</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="magazine-item">
-                    <img src="Images/4.jpeg" alt="Edgy Styles" />
-                    <div class="p-3">
-                        <h5 class="magazine-title">Edgy Styles</h5>
-                        <p class="magazine-description">Dare to stand out with our edgier fashion pieces.</p>
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <img src="Images/3.jpeg" class="card-img-top" alt="Stylish Denim Jeans (F)">
+                        <div class="card-body">
+                            <h5 class="card-title">Stylish Denim Jeans (F)</h5>
+                            <p class="card-text"><span class="previous-price">R179.99</span> R159.99</p>
+                            <a href="#" class="btn btn-primary btn-add-to-cart" data-toggle="modal" data-target="#myModal">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <img src="Images/4.jpeg" class="card-img-top" alt="Awesome Denim Jeans">
+                        <div class="card-body">
+                            <h5 class="card-title">Awesome Denim Jeans</h5>
+                            <p class="card-text"><span class="previous-price">R179.99</span> R159.99</p>
+                            <a href="#" class="btn btn-primary btn-add-to-cart" data-toggle="modal" data-target="#myModal">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <img src="Images/5.jpeg" class="card-img-top" alt="Stylish Denim Jacket">
+                        <div class="card-body">
+                            <h5 class="card-title">Stylish Denim Jacket</h5>
+                            <p class="card-text"><span class="previous-price">R179.99</span> R159.99</p>
+                            <a href="#" class="btn btn-primary btn-add-to-cart" data-toggle="modal" data-target="#myModal">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <img src="Images/6.jpeg" class="card-img-top" alt="Denim Jacket (M)">
+                        <div class="card-body">
+                            <h5 class="card-title">Denim Jacket (M)</h5>
+                            <p class="card-text"><span class="previous-price">R179.99</span> R159.99</p>
+                            <a href="#" class="btn btn-primary btn-add-to-cart" data-toggle="modal" data-target="#myModal">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <img src="Images/4.jpeg" class="card-img-top" alt="Denim Shorts">
+                        <div class="card-body">
+                            <h5 class="card-title">Denim Shorts</h5>
+                            <p class="card-text"><span class="previous-price">R129.99</span> R109.99</p>
+                            <a href="#" class="btn btn-primary btn-add-to-cart" data-toggle="modal" data-target="#myModal">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <img src="Images/3.jpeg" class="card-img-top" alt="Denim Skirt">
+                        <div class="card-body">
+                            <h5 class="card-title">Denim Skirt</h5>
+                            <p class="card-text"><span class="previous-price">R139.99</span> R119.99</p>
+                            <a href="#" class="btn btn-primary btn-add-to-cart" data-toggle="modal" data-target="#myModal">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <img src="Images/2.jpeg" class="card-img-top" alt="Denim Overalls">
+                        <div class="card-body">
+                            <h5 class="card-title">Denim Overalls</h5>
+                            <p class="card-text"><span class="previous-price">R199.99</span> R179.99</p>
+                            <a href="#" class="btn btn-primary btn-add-to-cart" data-toggle="modal" data-target="#myModal">Add to Cart</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <div class="large-image">
-            <img src="Images/1.jpeg" alt="Lookbook Feature" />
-            <div class="p-3">
-                <h5 class="magazine-title">Feature Style: Bold & Vibrant</h5>
-                <p>Step into the spotlight with our latest collection that emphasizes bold patterns and vibrant colors. These pieces are perfect for making a statement, whether you’re hitting the streets or stepping out for a special occasion. Explore the synergy of comfort and style, crafted for the modern individual who embraces creativity.</p>
-            </div>
-        </div>
-    </div>
+    </section>
 
     <footer>
         <div class="container text-center">
@@ -228,9 +149,36 @@
             <p>&copy; 2024 Hip Hop Cargo. All rights reserved.</p>
         </div>
     </footer>
-    <script src="index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Item Added to Cart</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-white">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Your item has been successfully added to your cart!</p>
+                <i class="fas fa-shopping-cart fa-2x mb-3"></i>
+                <p>Would you like to proceed to checkout?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="cart.html" class="btn btn-primary">Go to Cart</a>
+                <button type="button" class="btn btn-secondary" id="closeButton" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ 
+    <!-- This jQuery and Bootstrap CSS/JS -->
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+     <script src="index.js"></script>
 </body>
 </html>
-
-
