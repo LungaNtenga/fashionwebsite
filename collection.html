@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Collections - Hip Hop Cargo</title>
+    <link rel="stylesheet" href="/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
 
         body {
             font-family: 'Roboto', sans-serif;
@@ -95,41 +95,7 @@
             color: #fff;
         }
 
-        .product-card {
-            border: none;
-            background-color: white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            margin-bottom: 2rem;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .product-card img {
-            height: 300px;
-            object-fit: cover;
-        }
-
-        .product-card .card-body {
-            padding: 1.5rem;
-        }
-
-        .product-card .card-title {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .product-card .card-text {
-            font-size: 1.25rem;
-            color: #6c757d;
-            margin-bottom: 1rem;
-        }
-
+ 
         .btn-add-to-cart {
             background-color: #343a40;
             color: #fff;
@@ -143,7 +109,23 @@
             overflow: hidden;
         }
 
-        .btn-add-to-cart::before {
+
+
+         .btn-primary{ 
+            background-color: #343a40;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+
+         }
+
+         .btn-primary::before {
             content: '';
             position: absolute;
             top: 0;
@@ -154,30 +136,40 @@
             transition: all 0.3s ease;
         }
 
-        .btn-add-to-cart:hover::before {
+        .btn-primary:hover::before {
             left: 100%;
         }
 
-        .btn-add-to-cart:hover {
+        .btn-primary:hover {
             background-color: #23272b;
         }
 
-        footer {
-             background-color: #000;
-             color: white;
-             padding: 3rem 0;
-             margin-top: auto; /* This pushes the footer down */
-    }
 
-        .social-icons a {
-            color: white;
-            font-size: 1.5rem;
-            margin: 0 0.5rem;
-            transition: color 0.3s;
-        }
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
 
-        .social-icons a:hover {
-            color: #f8f9fa;
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .product-card .card-title {
+                font-size: 1.2rem;
+            }
+
+            .product-card .card-text {
+                font-size: 1rem;
+            }
+
+            .btn-primary {
+                padding: 0.5rem 1.5rem;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -192,7 +184,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="collection.html">Collections</a></li>
-                    <li class="nav-item"><a class="nav-link" href="lookbook.html">Lookbook</a></li>
+                    <li class="nav-item"><a class="nav-link" href="lookbook.html">Magazine</a></li>
                     <li class="nav-item">
                         <a class="nav-link" href="cart.html">
                             <i class="fas fa-shopping-cart"></i>
@@ -222,8 +214,8 @@
                     <img src="Images/1.jpeg" class="card-img-top" alt="Elegant Denim Jeans">
                     <div class="card-body">
                         <h5 class="card-title">Elegant Denim Jeans</h5>
-                        <p class="card-text">R129.99</p>
-                        <button class="btn btn-add-to-cart">Add to Cart</button>
+                        <p class="card-text"><span class="previous-price">R179.99</span> R159.99</p>
+                        <a href="#" class="btn btn-primary btn-add-to-cart" data-toggle="modal" data-target="#myModal">Add to Cart</a>
                     </div>
                 </div>
             </div>
@@ -232,8 +224,8 @@
                     <img src="Images/2.jpeg" class="card-img-top" alt="Classic Jeans (N)">
                     <div class="card-body">
                         <h5 class="card-title">Classic Jeans (N)</h5>
-                        <p class="card-text">R89.99</p>
-                        <button class="btn btn-add-to-cart">Add to Cart</button>
+                        <p class="card-text"><span class="previous-price">R179.99</span> R159.99</p>
+                        <a href="#" class="btn btn-primary btn-add-to-cart" data-toggle="modal" data-target="#myModal">Add to Cart</a>
                     </div>
                 </div>
             </div>
@@ -243,8 +235,8 @@
                     <img src="Images/5.jpeg" class="card-img-top" alt="Stylish Denim Jacket">
                     <div class="card-body">
                         <h5 class="card-title">Stylish Denim Jacket</h5>
-                        <p class="card-text">R159.99</p>
-                        <button class="btn btn-add-to-cart">Add to Cart</button>
+                        <p class="card-text"><span class="previous-price">R179.99</span> R159.99</p>
+                        <a href="#" class="btn btn-primary btn-add-to-cart" data-toggle="modal" data-target="#myModal">Add to Cart</a>
                     </div>
                 </div>
             </div>
@@ -252,6 +244,30 @@
         </div>
     </div>
 
+       <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Item Added to Cart</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-white">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Your item has been successfully added to your cart!</p>
+                <i class="fas fa-shopping-cart fa-2x mb-3"></i>
+                <p>Would you like to proceed to checkout?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="cart.html" class="btn btn-primary">Go to Cart</a>
+                <button type="button" class="btn btn-secondary" id="closeButton" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <footer>
         <div class="container text-center">
             <div class="social-icons mb-4">
@@ -264,41 +280,10 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const productItems = document.querySelectorAll('.product-item');
-
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const filter = button.getAttribute('data-filter');
-                    
-                    productItems.forEach(item => {
-                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-
-                    // Toggle active class on filter buttons
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                });
-            });
-
-            // Add to Cart button animation
-            const addToCartButtons = document.querySelectorAll('.btn-add-to-cart');
-            addToCartButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    this.classList.add('clicked');
-                    setTimeout(() => {
-                        this.classList.remove('clicked');
-                    }, 300);
-                });
-            });
-        });
-    </script>
+     <!-- This jQuery and Bootstrap CSS/JS -->
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+     <script src="index.js"></script>
 </body>
 </html>
