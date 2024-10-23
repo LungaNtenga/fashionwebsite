@@ -4,11 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lookbook - Hip Hop Cargo</title>
-    <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    
     <style>
+
+        /* Reset and general styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #f8f9fa;
@@ -18,15 +24,15 @@
             flex-direction: column;
         }
 
+        /* Navigation styles */
         .navbar {
-            background-color: rgba(0, 0, 0, 0.8) !important;
-            transition: all 0.3s ease;
+            background-color: #000;
+            padding: 1rem 0;
         }
 
         .navbar-brand {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 1.8rem;
+            font-size: 2.5rem;
+            font-weight: bold;
         }
 
         .nav-link {
@@ -36,18 +42,88 @@
             padding: 0.5rem 1rem !important;
         }
 
+
+        /* Cart styles */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            bottom: 0;
+            width: 400px;
+            background: white;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+            padding: 20px;
+            transition: right 0.3s ease-in-out;
+            z-index: 1050;
+            overflow-y: auto;
+        }
+
+        .cart-modal.active {
+            right: 0;
+        }
+
+        .cart-item {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+            padding: 0 15px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+
+        .nav-cart-icon {
+            position: relative;
+            display: inline-block;
+        }
+
+        .cart-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #000;
+        }
+
+        .cart-total {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            text-align: right;
+        }
+
+
+
+
         .hero {
-            background-image: url('Images/maboneng.jpeg'); /* New hero image */
+            background-image: url('/Images/maboneng.jpeg');
             background-size: cover;
             background-position: center;
-            height: 60vh;
+            height: calc(100vh - 76px);
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
             text-align: center;
             position: relative;
-            flex-direction: column; /* Stack items vertically */
+            flex-direction: column;
         }
 
         .hero::before {
@@ -57,14 +133,14 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+            background: rgba(0, 0, 0, 0.5);
             z-index: 1;
         }
 
         .hero h1, .hero p {
             position: relative;
-            z-index: 2; /* Ensure text is above the overlay */
-            margin: 0; /* Remove default margins */
+            z-index: 2;
+            margin: 0;
         }
 
         .hero h1 {
@@ -74,12 +150,13 @@
         }
 
         .hero p {
-            font-size: 1.5rem; /* Adjusted font size for better readability */
-            margin-top: 1rem; /* Added margin for spacing */
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
         }
 
         .magazine-section {
-            padding: 2rem 0;
+            padding: 5rem 0;
+
         }
 
         .magazine-item {
@@ -87,9 +164,9 @@
             border-radius: 8px;
             overflow: hidden;
             transition: transform 0.3s;
-            background-color: white; /* White background for magazine cards */
-            border: 1px solid #ccc; /* Border for better definition */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            background-color: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .magazine-item img {
@@ -104,13 +181,13 @@
 
         .magazine-title {
             font-family: 'Playfair Display', serif;
-            font-weight: 800; /* Bold title */
-            font-size: 1.5rem; /* Responsive title size */
+            font-weight: 800;
+            font-size: 1.5rem;
             color: #222;
         }
 
         .magazine-description {
-            font-size: 1rem; /* Responsive description size */
+            font-size: 1rem;
             color: #666;
         }
 
@@ -122,8 +199,14 @@
 
         .large-image img {
             width: 100%;
-            height: auto; /* Make image responsive */
-            object-fit: cover; /* Maintain aspect ratio */
+            height: auto;
+            object-fit: cover;
+        }
+
+        .previous-price {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 10px;
         }
 
         footer {
@@ -144,31 +227,26 @@
             color: #f8f9fa;
         }
 
-        /* Responsive styles */
-        @media (max-width: 768px) {
+        /* Responsive adjustments */
+            @media (max-width: 768px) {
+            *{
+                padding: 5px;
+            }
             .hero h1 {
-                font-size: 2.5rem; /* Smaller heading on mobile */
+                font-size: 2.5rem;
             }
-            .hero p {
-                font-size: 1rem; /* Smaller paragraph on mobile */
-            }
-            .magazine-title {
-                font-size: 1.2rem; /* Smaller title on mobile */
-            }
-            .magazine-description {
-                font-size: 0.9rem; /* Smaller description on mobile */
-            }
-        }
 
-        @media (max-width: 576px) {
-            .navbar-brand {
-                font-size: 1.5rem; /* Smaller brand on mobile */
+            .cart-modal {
+                width: 100%;
+                right: -100%;
             }
         }
+      
     </style>
 </head>
 <body>
 
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">Hip Hop Cargo</a>
@@ -181,9 +259,9 @@
                     <li class="nav-item"><a class="nav-link" href="collection.html">Collections</a></li>
                     <li class="nav-item"><a class="nav-link" href="lookbook.html">Magazine</a></li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cart.html">
+                        <a class="nav-link nav-cart-icon" href="#" onclick="toggleCart(event)">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class="cart-count">0</span>
+                            <span class="cart-count" id="cart-count">0</span>
                         </a>
                     </li>
                 </ul>
@@ -229,7 +307,7 @@
         </div>
         
         <div class="large-image">
-            <img src="Images/1.jpeg" alt="Lookbook Feature" /> <!-- New large image -->
+            <img src="Images/1.jpeg" alt="Lookbook Feature" />
             <div class="p-3">
                 <h5 class="magazine-title">Feature Style: Bold & Vibrant</h5>
                 <p>Step into the spotlight with our latest collection that emphasizes bold patterns and vibrant colors. These pieces are perfect for making a statement, whether you’re hitting the streets or stepping out for a special occasion. Explore the synergy of comfort and style, crafted for the modern individual who embraces creativity.</p>
@@ -248,7 +326,173 @@
             <p>&copy; 2024 Hip Hop Cargo. All rights reserved.</p>
         </div>
     </footer>
+    <script>
+        // Product data
+        const products = [
+            {
+                id: 'jean1',
+                name: 'Elegant Denim Jeans',
+                price: 129.99,
+                originalPrice: 149.99,
+                image: '/Images/1.Jpeg'
+            },
+            {
+                id: 'jean2',
+                name: 'Classic Jeans (N)',
+                price: 89.99,
+                originalPrice: 99.99,
+                image: '/Images/2.Jpeg'
+            },
+            {
+                id: 'jean3',
+                name: 'Stylish Denim Jeans (F)',
+                price: 159.99,
+                originalPrice: 179.99,
+                image: '/Images/3.Jpeg'
+            },
+            {
+                id: 'jacket1',
+                name: 'Stylish Denim Jacket',
+                price: 159.99,
+                originalPrice: 179.99,
+                image: '/Images/4.Jpeg'
+            },
+            {
+                id: 'jacket2',
+                name: 'Denim Jacket (M)',
+                price: 159.99,
+                originalPrice: 179.99,
+                image: '/Images/5.Jpeg'
+            },
+            {
+                id: 'shorts1',
+                name: 'Denim Shorts',
+                price: 109.99,
+                originalPrice: 129.99,
+                image: '/Images/1.Jpeg'
+            }
+        ];
+
+        // Shopping Cart Class
+        class ShoppingCart {
+            constructor() {
+                this.items = [];
+            }
+
+            addItem(item) {
+                const existingItem = this.items.find(i => 
+                    i.id === item.id && i.size === item.size);
+
+                if (existingItem) {
+                    existingItem.quantity += item.quantity;
+                } else {
+                    this.items.push({...item});
+                }
+            }
+
+            removeItem(id) {
+                this.items = this.items.filter(item => item.id !== id);
+            }
+
+            getTotal() {
+                return this.items.reduce((total, item) => 
+                    total + (item.price * item.quantity), 0);
+            }
+
+            getItemCount() {
+                return this.items.reduce((total, item) => total + item.quantity, 0);
+            }
+        }
+
+        // Initialize cart
+        const cart = new ShoppingCart();
+
+        // Toggle cart visibility
+        function toggleCart(event) {
+            event.preventDefault();
+            const cartModal = document.getElementById('cart-modal');
+            cartModal.classList.toggle('active');
+        }
+
+        // Add to cart function
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                cart.addItem({
+                    ...product,
+                    quantity: 1,
+                    size: 'M' // Default size
+                });
+                updateCartDisplay();
+                
+                // Show success message
+                alert('Item added to cart successfully!');
+            }
+        }
+
+        // Remove from cart function
+        function removeFromCart(productId) {
+            cart.removeItem(productId);
+            updateCartDisplay();
+        }
+
+        // Update cart display
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const cartTotal = document.getElementById('cart-total');
+
+            // Update cart count
+            cartCount.textContent = cart.getItemCount();
+
+            // Update cart items
+            cartItems.innerHTML = cart.items.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-details">
+                        <h5>${item.name}</h5>
+                        <p>Size: ${item.size}</p>
+                        <p>R${item.price} × ${item.quantity}</p>
+                    </div>
+                    <button class="btn btn-danger btn-sm" onclick="removeFromCart('${item.id}')">
+                        Remove
+                    </button>
+                </div>
+            `).join('');
+
+            // Update total
+            cartTotal.textContent = cart.getTotal().toFixed(2);
+        }
+
+        // Display products
+        function displayProducts() {
+            const container = document.getElementById('products-container');
+            container.innerHTML = products.map(product => `
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                        <div class="card-body">
+                            <h5 class="card-title">${product.name}</h5>
+                            <p class="card-text">
+                                <span class="previous-price">R${product.originalPrice}</span>
+                                R${product.price}
+                            </p>
+                            <button class="btn btn-primary w-100" onclick="addToCart('${product.id}')">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            displayProducts();
+            updateCartDisplay();
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
