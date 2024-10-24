@@ -222,6 +222,39 @@
         .social-icons a:hover {
             color: #007bff;
         }
+        .notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.5s ease-in-out;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.notification-icon {
+    font-size: 20px;
+}
+
+.notification-message {
+    margin: 0;
+}
+
+
+        
 
         @media (max-width: 768px) {
             .hero h1 {
@@ -305,195 +338,229 @@
 
     <script>
         // Product data
-        const products = [
-            {
-                id: 'jean1',
-                name: 'Elegant Denim Jeans',
-                price: 129.99,
-                originalPrice: 149.99,
-                image: 'images/1.png'
-            },
-            {
-                id: 'jean2',
-                name: 'Classic Jeans (N)',
-                price: 89.99,
-                originalPrice: 99.99,
-                image: 'images/2.png'
-            },
-            {
-                id: 'jean3',
-                name: 'Stylish Denim Jeans (F)',
-                price: 159.99,
-                originalPrice: 179.99,
-                image: 'images/3.png'
-            },
-            {
-                id: 'jacket1',
-                name: 'Stylish Denim Jacket',
-                price: 159.99,
-                originalPrice: 179.99,
-                image: 'images/4.png'
-            },
-            {
-                id: 'jacket2',
-                name: 'Denim Jacket (M)',
-                price: 159.99,
-                originalPrice: 179.99,
-                image: 'images/5.png'
-            },
-            {
-                id: 'shorts1',
-                name: 'Denim Shorts',
-                price: 109.99,
-                originalPrice: 129.99,
-                image: 'images/1.png'
-            }
-        ];
+       // Product data
+const products = [
+    {
+        id: 'jean1',
+        name: 'Elegant Denim Jeans',
+        price: 129.99,
+        originalPrice: 149.99,
+        image: 'images/1.png'
+    },
+    {
+        id: 'jean2',
+        name: 'Classic Jeans (N)',
+        price: 89.99,
+        originalPrice: 99.99,
+        image: 'images/2.png'
+    },
+    {
+        id: 'jean3',
+        name: 'Stylish Denim Jeans (F)',
+        price: 159.99,
+        originalPrice: 179.99,
+        image: '/images/3.png'
+    },
+    {
+        id: 'jacket1',
+        name: 'Stylish Denim Jacket',
+        price: 159.99,
+        originalPrice: 179.99,
+        image: '/images/4.png'
+    },
+    {
+        id: 'jacket2',
+        name: 'Denim Jacket (M)',
+        price: 159.99,
+        originalPrice: 179.99,
+        image: '/images/5.png'
+    },
+    {
+        id: 'shorts1',
+        name: 'Denim Shorts',
+        price: 109.99,
+        originalPrice: 129.99,
+        image: '/images/1.png'
+    }
+];
 
-        class ShoppingCart {
-            constructor() {
-                this.items = [];
-            }
+class ShoppingCart {
+    constructor() {
+        this.items = [];
+    }
 
-            addItem(item) {
-                const existingItem = this.items.find(i => i.id === item.id && i.size === item.size);
-                if (existingItem) {
-                    existingItem.quantity += item.quantity;
-                } else {
-                    this.items.push(item);
-                }
-            }
-
-            removeItem(id) {
-                this.items = this.items.filter(item => item.id !== id);
-            }
-
-            getTotal() {
-                return this.items.reduce((total, item) => total + (item.price * item.quantity), 0);
-            }
-
-            getItemCount() {
-                return this.items.reduce((count, item) => count + item.quantity, 0);
-            }
+    addItem(item) {
+        const existingItem = this.items.find(i => i.id === item.id && i.size === item.size);
+        if (existingItem) {
+            existingItem.quantity += item.quantity;
+        } else {
+            this.items.push(item);
         }
+    }
 
-        const cart = new ShoppingCart();
+    removeItem(id) {
+        this.items = this.items.filter(item => item.id !== id);
+    }
 
-        function toggleCart(event) {
-            event.preventDefault();
-            const cartModal = document.getElementById('cart-modal');
-            cartModal.classList.toggle('active');
+    getTotal() {
+        return this.items.reduce((total, item) => total + (item.price * item.quantity), 0);
+    }
+
+    getItemCount() {
+        return this.items.reduce((count, item) => count + item.quantity, 0);
+    }
+}
+
+const cart = new ShoppingCart();
+
+function showSuccessMessage(productName, size) {
+    // Remove any existing notifications
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.innerHTML = `
+        <span class="notification-icon">✓</span>
+        <p class="notification-message">${productName} (Size: ${size}) has been added to your cart!</p>
+    `;
+
+    // Add to document
+    document.body.appendChild(notification);
+
+    // Trigger animation
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 10);
+
+    // Remove notification after delay
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            notification.remove();
+        }, 500);
+    }, 3000);
+}
+
+function toggleCart(event) {
+    event.preventDefault();
+    const cartModal = document.getElementById('cart-modal');
+    cartModal.classList.toggle('active');
+    updateCartDisplay();
+}
+
+function addToCart(productId, size) {
+    const product = products.find(p => p.id === productId);
+    if (product) {
+        const quantity = 1;
+        cart.addItem({ ...product, quantity, size });
+        updateCartDisplay();
+        showSuccessMessage(product.name, size);
+    }
+}
+
+function removeFromCart(id) {
+    cart.removeItem(id);
+    updateCartDisplay();
+}
+
+function updateCartDisplay() {
+    const cartItems = document.getElementById('cart-items');
+    const cartCount = document.getElementById('cart-count');
+    const cartTotal = document.getElementById('cart-total');
+
+    cartCount.textContent = cart.getItemCount();
+
+    cartItems.innerHTML = cart.items.map(item => `
+        <div class="cart-item">
+            <div class="cart-item-details">
+                <h5>${item.name}</h5>
+                <div class="size-select">
+                    <strong>Size:</strong>
+                    <select class="form-select form-select-sm" onchange="updateSize('${item.id}', this.value)">
+                        <option value="S" ${item.size === 'S' ? 'selected' : ''}>S</option>
+                        <option value="M" ${item.size === 'M' ? 'selected' : ''}>M</option>
+                        <option value="L" ${item.size === 'L' ? 'selected' : ''}>L</option>
+                        <option value="XL" ${item.size === 'XL' ? 'selected' : ''}>XL</option>
+                    </select>
+                </div>
+                <p>R${item.price} × ${item.quantity}</p>
+                <div class="quantity-controls">
+                    <button class="btn btn-secondary btn-sm" onclick="updateQuantity('${item.id}', -1)" ${item.quantity === 1 ? 'disabled' : ''}>−</button>
+                    <input type="text" class="form-control mx-2" value="${item.quantity}" readonly>
+                    <button id="plus" class="btn btn-secondary btn-sm" onclick="updateQuantity('${item.id}', 1)">+</button>
+                </div>
+            </div>
+            <button class="btn btn-danger btn-sm" onclick="removeFromCart('${item.id}')">Remove</button>
+        </div>
+    `).join('');
+
+    cartTotal.textContent = cart.getTotal().toFixed(2);
+}
+
+function updateSize(id, size) {
+    const item = cart.items.find(item => item.id === id);
+    if (item) {
+        item.size = size;
+        updateCartDisplay();
+    }
+}
+
+function updateQuantity(id, change) {
+    const item = cart.items.find(item => item.id === id);
+    if (item) {
+        item.quantity += change;
+        if (item.quantity < 1) {
+            removeFromCart(id);
+        } else {
             updateCartDisplay();
         }
+    }
+}
 
-        function addToCart(productId, size) {
-            const product = products.find(p => p.id === productId);
-            if (product) {
-                const quantity = 1; // You can modify this to accept user input
-                cart.addItem({ ...product, quantity, size });
-                updateCartDisplay();
-            }
-        }
-
-        function removeFromCart(id) {
-            cart.removeItem(id);
-            updateCartDisplay();
-        }
-
-        function updateCartDisplay() {
-            const cartItems = document.getElementById('cart-items');
-            const cartCount = document.getElementById('cart-count');
-            const cartTotal = document.getElementById('cart-total');
-
-            cartCount.textContent = cart.getItemCount();
-
-            cartItems.innerHTML = cart.items.map(item => `
-                <div class="cart-item">
-                    <div class="cart-item-details">
-                        <h5>${item.name}</h5>
+function renderProducts(filter) {
+    const productsContainer = document.getElementById('products-container');
+    productsContainer.innerHTML = products
+        .filter(p => filter === 'all' || p.category === filter)
+        .map(p => `
+            <div class="col-md-4 mb-4" >
+                <div class="card">
+                    <img src="${p.image}" class="card-img-top" alt="${p.name}">
+                    <div class="card-body">
+                        <h5 class="card-title">${p.name}</h5>
+                        <p class="card-text">
+                            <span class="previous-price">R${p.originalPrice}</span>
+                            <strong>R${p.price}</strong>
+                        </p>
                         <div class="size-select">
                             <strong>Size:</strong>
-                            <select class="form-select form-select-sm" onchange="updateSize('${item.id}', this.value)">
-                                <option value="S" ${item.size === 'S' ? 'selected' : ''}>S</option>
-                                <option value="M" ${item.size === 'M' ? 'selected' : ''}>M</option>
-                                <option value="L" ${item.size === 'L' ? 'selected' : ''}>L</option>
-                                <option value="XL" ${item.size === 'XL' ? 'selected' : ''}>XL</option>
+                            <select class="form-select mb-3" id="size-${p.id}">
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
                             </select>
                         </div>
-                        <p>R${item.price} × ${item.quantity}</p>
-                        <div class="quantity-controls">
-                            <button class="btn btn-secondary btn-sm" onclick="updateQuantity('${item.id}', -1)" ${item.quantity === 1 ? 'disabled' : ''}>−</button>
-                            <input type="text" class="form-control mx-2" value="${item.quantity}" readonly>
-                            <button id="plus" class="btn btn-secondary btn-sm" onclick="updateQuantity('${item.id}', 1)">+</button>
-                        </div>
+                        <button class="btn btn-primary" onclick="addToCart('${p.id}', document.getElementById('size-${p.id}').value)">Add to Cart</button>
                     </div>
-                    <button class="btn btn-danger btn-sm" onclick="removeFromCart('${item.id}')">Remove</button>
                 </div>
-            `).join('');
+            </div>
+        `).join('');
+}
 
-            cartTotal.textContent = cart.getTotal().toFixed(2);
-        }
+document.querySelectorAll('.filter-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        const filter = button.dataset.filter;
+        renderProducts(filter);
+    });
+});
 
-        function updateSize(id, size) {
-            const item = cart.items.find(item => item.id === id);
-            if (item) {
-                item.size = size;
-                updateCartDisplay();
-            }
-        }
-
-        function updateQuantity(id, change) {
-            const item = cart.items.find(item => item.id === id);
-            if (item) {
-                item.quantity += change;
-                if (item.quantity < 1) {
-                    removeFromCart(id);
-                } else {
-                    updateCartDisplay();
-                }
-            }
-        }
-
-        function renderProducts(filter) {
-            const productsContainer = document.getElementById('products-container');
-            productsContainer.innerHTML = products
-                .filter(p => filter === 'all' || p.category === filter)
-                .map(p => `
-                    <div class="col-md-4 mb-4" >
-                        <div class="card">
-                            <img src="${p.image}" class="card-img-top" alt="${p.name}">
-                            <div class="card-body">
-                                <h5 class="card-title">${p.name}</h5>
-                                <p class="card-text">
-                                    <span class="previous-price">R${p.originalPrice}</span>
-                                    <strong>R${p.price}</strong>
-                                </p>
-                                <div class="size-select">
-                                    <strong>Size:</strong>
-                                    <select class="form-select mb-3" id="size-${p.id}">
-                                        <option value="S">S</option>
-                                        <option value="M">M</option>
-                                        <option value="L">L</option>
-                                        <option value="XL">XL</option>
-                                    </select>
-                                </div>
-                                <button class="btn btn-primary" onclick="addToCart('${p.id}', document.getElementById('size-${p.id}').value)">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                `).join('');
-        }
-
-        document.querySelectorAll('.filter-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                const filter = button.dataset.filter;
-                renderProducts(filter);
-            });
-        });
-
-        renderProducts('all');
+renderProducts('all');
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
