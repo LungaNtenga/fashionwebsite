@@ -216,6 +216,38 @@
             margin-top: auto;
         }
 
+        .address-container {
+        display: flex;
+        align-items: center; /* Aligns the image and text vertically */
+        justify-content: center; /* Centers content horizontally */
+        margin-top: 10px; /* Optional: space above */
+
+        
+}       .address-container p{
+        font-size: 16px;
+}
+
+        .location-icon {
+        width: 18px; /* Set width of the image */
+        height: auto; /* Maintain aspect ratio */
+        margin-right: 8px; /* Space between the image and text */
+        margin-top: -18px;
+
+}         .other{ 
+            display: flex;
+            justify-content: center; /* Centers items horizontally */
+            gap: 15px; /* space between items */
+            margin: 20px 0; /* space above and below */
+        }
+
+        .other a {
+         text-decoration: none; /* Removing underline */
+         color: inherit; 
+
+}         .other a:hover {
+         text-decoration: underline; 
+}  
+
         .social-icons a {
             color: white;
             font-size: 1.5rem;
@@ -229,7 +261,7 @@
 
         /* Responsive adjustments */
             @media (max-width: 768px) {
-            .magazine-section{
+            *{
                 padding: 5px;
             }
             .hero h1 {
@@ -258,6 +290,7 @@
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="collection.html">Collections</a></li>
                     <li class="nav-item"><a class="nav-link" href="lookbook.html">Magazine</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                     <li class="nav-item">
                         <a class="nav-link nav-cart-icon" href="#" onclick="toggleCart(event)">
                             <i class="fas fa-shopping-cart"></i>
@@ -279,7 +312,7 @@
         <div class="row">
             <div class="col-md-4 col-sm-6">
                 <div class="magazine-item">
-                    <img src="images/6.png" alt="Urban Chic" />
+                    <img src="images/urban.png" alt="Urban Chic" />
                     <div class="p-3">
                         <h5 class="magazine-title">Urban Chic</h5>
                         <p class="magazine-description">Elevate your street style with bold designs and colors.</p>
@@ -288,7 +321,7 @@
             </div>
             <div class="col-md-4 col-sm-6">
                 <div class="magazine-item">
-                    <img src="images/3.png" alt="Hip Hop Vibes" />
+                    <img src="images/hippy.png" alt="Hip Hop Vibes" />
                     <div class="p-3">
                         <h5 class="magazine-title">Hip Hop Vibes</h5>
                         <p class="magazine-description">Capture the essence of hip hop culture with these looks.</p>
@@ -297,7 +330,7 @@
             </div>
             <div class="col-md-4 col-sm-6">
                 <div class="magazine-item">
-                    <img src="images/4.png" alt="Edgy Styles" />
+                    <img src="images/edgy.png" alt="Edgy Styles" />
                     <div class="p-3">
                         <h5 class="magazine-title">Edgy Styles</h5>
                         <p class="magazine-description">Dare to stand out with our edgier fashion pieces.</p>
@@ -307,7 +340,7 @@
         </div>
         
         <div class="large-image">
-            <img src="images/1.png" alt="Lookbook Feature" />
+            <img src="images/large.png" alt="Lookbook Feature" />
             <div class="p-3">
                 <h5 class="magazine-title">Feature Style: Bold & Vibrant</h5>
                 <p>Step into the spotlight with our latest collection that emphasizes bold patterns and vibrant colors. These pieces are perfect for making a statement, whether you’re hitting the streets or stepping out for a special occasion. Explore the synergy of comfort and style, crafted for the modern individual who embraces creativity.</p>
@@ -315,16 +348,29 @@
         </div>
     </div>
 
-    <footer>
-        <div class="container text-center">
-            <div class="social-icons mb-4">
-                <a href="https://www.instagram.com/hip_hop_cargo/"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=100063974475179&mibextid=ZbWKwL"><i class="fab fa-facebook"></i></a>
-                <a href="https://za.pinterest.com/HiphopcargoSA/?invite_code=31cac3e10f274be4a5e987d1c310100e&sender=1098104459051012124"><i class="fab fa-pinterest"></i></a>
-            </div>
-            <p>&copy; 2024 Hip Hop Cargo. All rights reserved.</p>
-        </div>
-    </footer>
+            <!-- Footer -->
+            <footer>
+                <div class="container text-center">
+                    <div class="social-icons mb-4">
+                        <a href="https://www.instagram.com/hip_hop_cargo/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100063974475179&mibextid=ZbWKwL"><i class="fab fa-facebook"></i></a>
+                        <a href="https://za.pinterest.com/HiphopcargoSA/?invite_code=31cac3e10f274be4a5e987d1c310100e&sender=1098104459051012124"><i class="fab fa-pinterest"></i></a>
+                        <a href="mailto:hiphopcargo2022@gmail.com"><i class="fas fa-paper-plane"></i></a>
+                    </div>
+                    <p>&copy; 2024 Hip Hop Cargo. All rights reserved.</p>
+                    <div class="other">
+                        <div><a href="about.html"><p>About</p></a></div>
+                        <div><a href="terms.html"><p>Terms & Conditions</p></a></div>
+                        <div><a href="private.html"><p>Privacy Policy</p></a></div>
+                    </div>
+                    <div class="address-container">
+                        <img src="images/saflag.png" alt="Location Icon" class="location-icon" />
+                        <p>267 Fox Street, Johannesburg, South Africa</p>
+                    </div>
+                </div>
+            </footer>
+
+
     <script>
         // Product data
         const products = [
@@ -490,8 +536,8 @@
             updateCartDisplay();
         });
     </script>
-
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script src="paystack.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
