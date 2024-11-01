@@ -39,6 +39,8 @@
             margin-right: 10px;
         }
 
+        
+
         .cart-modal {
             position: fixed;
             top: 0;
@@ -61,13 +63,12 @@
             border-bottom: 1px solid #eee;
             padding: 15px 0;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            gap: 10px;
         }
 
         .cart-item-details {
             flex-grow: 1;
-            padding: 0 15px;
         }
 
         .cart-count {
@@ -151,6 +152,37 @@
             padding: 3rem 0;
             margin-top: auto;
         }
+        .address-container {
+        display: flex;
+        align-items: center; /* Aligns the image and text vertically */
+        justify-content: center; /* Centers content horizontally */
+        margin-top: 10px; /* Optional: space above */
+
+        
+}       .address-container p{
+        font-size: 16px;
+}
+
+        .location-icon {
+        width: 18px; /* Set width of the image */
+        height: auto; /* Maintain aspect ratio */
+        margin-right: 8px; /* Space between the image and text */
+        margin-top: -18px;
+
+}         .other{ 
+            display: flex;
+            justify-content: center; /* Centers items horizontally */
+            gap: 15px; /* space between items */
+            margin: 20px 0; /* space above and below */
+        }
+
+        .other a {
+         text-decoration: none; /* Removing underline */
+         color: inherit; 
+
+}         .other a:hover {
+         text-decoration: underline; 
+}  
 
         .social-icons a {
             color: white;
@@ -187,35 +219,50 @@
         }
 
         .notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 15px;
-    background-color: #28a745;
-    color: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    z-index: 9999;
-    opacity: 0;
-    transform: translateX(100%);
-    transition: all 0.5s ease-in-out;
+         position: fixed;
+         top: 20px;
+         right: 20px;
+         padding: 15px;
+         background-color: #28a745;
+         color: white;
+         border-radius: 5px;
+         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+         display: flex;
+         align-items: center;
+         gap: 10px;
+         z-index: 9999;
+         opacity: 0;
+         transform: translateX(100%);
+         transition: all 0.5s ease-in-out;
 }
 
-.notification.show {
-    opacity: 1;
-    transform: translateX(0);
+        .notification.show {
+        opacity: 1;
+        transform: translateX(0);
 }
 
-.notification-icon {
-    font-size: 20px;
+        .notification-icon {
+        font-size: 20px;
 }
 
-.notification-message {
-    margin: 0;
+        .notification-message {
+         margin: 0;
 }
+        .container {
+            text-align: left;
+        }
+
+        h1 {
+            text-align: left;
+            font-weight: 700;
+        }
+
+        h2 {
+
+            text-align: left;
+        }
+
+
 
         @media (max-width: 768px) {
             .cart-modal {
@@ -226,6 +273,7 @@
     </style>
 </head>
 <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">Hip Hop Cargo</a>
@@ -237,6 +285,7 @@
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="collection.html">Collections</a></li>
                     <li class="nav-item"><a class="nav-link" href="lookbook.html">Magazine</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                     <li class="nav-item">
                         <a class="nav-link nav-cart-icon" href="#" onclick="toggleCart(event)">
                             <i class="fas fa-shopping-cart"></i>
@@ -255,8 +304,8 @@
             <button class="btn filter-btn active" data-filter="all">All</button>
             <button class="btn filter-btn" data-filter="jeans">Jeans</button>
             <button class="btn filter-btn" data-filter="jackets">Jackets</button>
-            <button class="btn filter-btn" data-filter="shirts">Shirts</button>
-            <button class="btn filter-btn" data-filter="accessories">Accessories</button>
+            <button class="btn filter-btn" data-filter="shoes">Shoes</button>
+            <button class="btn filter-btn" data-filter="accessories">accessories</button>
         </div>
 
         <div class="row" id="products-container">
@@ -276,44 +325,315 @@
         </div>
     </div>
 
-    <footer>
-        <div class="container text-center">
-            <div class="social-icons mb-4">
-                <a href="https://www.instagram.com/hip_hop_cargo/"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=100063974475179&mibextid=ZbWKwL"><i class="fab fa-facebook"></i></a>
-                <a href="https://za.pinterest.com/HiphopcargoSA/?invite_code=31cac3e10f274be4a5e987d1c310100e&sender=1098104459051012124"><i class="fab fa-pinterest"></i></a>
+        <!-- Footer -->
+        <footer>
+            <div class="container text-center">
+                <div class="social-icons mb-4">
+                    <a href="https://www.instagram.com/hip_hop_cargo/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=100063974475179&mibextid=ZbWKwL"><i class="fab fa-facebook"></i></a>
+                    <a href="https://za.pinterest.com/HiphopcargoSA/?invite_code=31cac3e10f274be4a5e987d1c310100e&sender=1098104459051012124"><i class="fab fa-pinterest"></i></a>
+                    <a href="mailto:hiphopcargo2022@gmail.com"><i class="fas fa-paper-plane"></i></a>
+                </div>
+                <p>&copy; 2024 Hip Hop Cargo. All rights reserved.</p>
+                <div class="other">
+                    <div><a href="about.html"><p>About</p></a></div>
+                    <div><a href="terms.html"><p>Terms & Conditions</p></a></div>
+                    <div><a href="private.html"><p>Privacy Policy</p></a></div>
+                </div>
+                <div class="address-container">
+                    <img src="images/saflag.png" alt="Location Icon" class="location-icon" />
+                    <p>267 Fox Street, Johannesburg, South Africa</p>
+                </div>
             </div>
-            <p>&copy; 2024 Hip Hop Cargo. All rights reserved.</p>
-        </div>
-    </footer>
+        </footer>
 
     <script>
         // Product data
         const products = [
     {
         id: 'jean1',
-        name: 'Elegant Denim Jeans',
-        price: 159.99,
-        originalPrice: 179.99,
-        image: 'images/1.png',
-        category: 'jeans'
+        name: 'Rosemary Pants',
+        price: 449.99,
+        originalPrice: 499.99,
+        image: 'images/cargo4.png',
+        category: "jeans"
     },
     {
         id: 'jean2',
-        name: 'Classic Jeans (N)',
-        price: 159.99,
-        originalPrice: 179.99,
-        image: 'images/2.png',
-        category: 'jeans'
+        name: 'Cargo Pants',
+        price: 649.99,
+        originalPrice: 699.99,
+        image: 'images/cargo5.png',
+        category: "jeans"
+    },
+
+    {
+        id: 'skirt1',
+        name: 'Diced Up Skirt',
+        price: 349.99,
+        originalPrice: 399.99,
+        image: 'images/skirt1.png',
+        category: "jeans"
+    },
+
+    {
+        id: 'jean3',
+        name: 'Limbo Jorts',
+        price: 399.99,
+        originalPrice: 449.99,
+        image: 'images/cargo.png',
+        category: "jeans"
+    },
+
+    {
+        id: 'jean4',
+        name: 'Riot Pants',
+        price: 699.99,
+        originalPrice: 749.99,
+        image: 'images/cargo1.png',
+        category: "jeans"
+    },
+
+    {
+        id: 'jean5',
+        name: 'Patched Pants',
+        price: 499.99,
+        originalPrice: 549.99,
+        image: 'images/cargo2.png',
+        category: "jeans"
+    },
+
+    {
+        id: 'jean6',
+        name: 'Patched Pants',
+        price: 399.99,
+        originalPrice: 449.99,
+        image: 'images/cargo3.png',
+        category: "jeans"
     },
     {
+        id: 'jean7',
+        name: 'Bootleg Jeans',
+        price: 449.99,
+        originalPrice: 499.99,
+        image: 'images/cargo7.png',
+        category: "jeans"
+    },
+
+    {
+        id: 'jean8',
+        name: 'Jeans',
+        price: 449.99,
+        originalPrice: 499.99,
+        image: 'images/cargo8.png',
+        category: "jeans"
+    },
+
+    {
+        id: 'jean9',
+        name: 'Terrified Jeans',
+        price: 599.99,
+        originalPrice: 549.99,
+        image: 'images/cargo9.png',
+        category: "jeans"
+    },
+    {
+        id: 'jean10',
+        name: 'Stikers Skirt',
+        price: 279.99,
+        originalPrice: 309.99,
+        image: 'images/skirt2.png',
+        category: "jeans"
+    },
+
+    {
+        id: 'jean11',
+        name: 'Rockstar Skirt',
+        price: 549.99,
+        originalPrice: 599.99,
+        image: 'images/skirt3.png',
+        category: "jeans"
+    },
+
+    {
+        id: 'jean12',
+        name: 'Sliced Jeans',
+        price: 499.99,
+        originalPrice: 549.99,
+        image: 'images/cargo10.png',
+        category: "jeans"
+    },
+
+    {
+    id: 'jean13',
+        name: 'Punk Not Dead Jeans',
+        price: 599.99,
+        originalPrice: 649.99,
+        image: 'images/cargo11.png',
+        category: "jeans"
+    },
+
+    {
+    id: 'jean14',
+        name: 'Stars Jeans',
+        price: 399.99,
+        originalPrice: 349.99,
+        image: 'images/cargo12.png',
+        category: "jeans"
+    },
+
+    {
+    id: 'jean15',
+        name: 'Horrific Pants',
+        price: 499.99,
+        originalPrice: 449.99,
+        image: 'images/cargo13.png',
+        category: "jeans"
+    },
+
+    {
+    id: 'jean16',
+        name: 'Distressed Jeans',
+        price: 399.99,
+        originalPrice: 349.99,
+        image: 'images/cargo14.png',
+        category: "jeans"
+    },
+
+    {
+    id: 'jean17',
+        name: 'Rats Chowed Jeans',
+        price: 499.99,
+        originalPrice: 549.99,
+        image: 'images/cargo15.png',
+        category: "jeans"
+    },
+
+    {
         id: 'jacket1',
-        name: 'Stylish Denim Jacket',
-        price: 159.99,
-        originalPrice: 179.99,
-        image: 'images/5.png',
-        category: 'jackets'
+        name: 'Orange Vest',
+        price: 399.99,
+        originalPrice: 449.99,
+        image: 'images/jersey2.png',
+        category: "jackets"
+    },
+
+    {
+        id: 'jacket2',
+        name: 'Third Eyes Leather Jacket',
+        price: 499.99,
+        originalPrice: 549.99,
+        image: 'images/jersey4.png',
+        category: "jackets"
+    },
+
+    {
+        id: 'jacket3',
+        name: 'Punk Hoodie Vest',
+        price: 399.99,
+        originalPrice: 449.99,
+        image: 'images/jersey3.png',
+        category: "jackets"
+    },
+
+    {
+        id: 'jacket4',
+        name: 'Pot Hols Vest',
+        price: 399.99,
+        originalPrice: 349.99,
+        image: 'images/jersey1.png',
+        category: "jackets"
+    },
+
+    {
+        id: 'jacket5',
+        name: 'Leather Jacket',
+        price: 449.99,
+        originalPrice: 499.99,
+        image: 'images/jersey5.png',
+        category: "jackets"
+    },
+
+    {
+        id: 'jacket6',
+        name: 'Terrified Jean Jacket',
+        price: 699.99,
+        originalPrice: 749.99,
+        image: 'images/jersey6.png',
+        category: "jackets"
+    },
+
+    {
+        id: 'jacket7',
+        name: 'Terrified Jean Jacket',
+        price: 659.99,
+        originalPrice: 699.99,
+        image: 'images/jersey8.png',
+        category: "jackets"
+    },
+
+
+    {
+        id: 'shoes1',
+        name: 'Rockstar Boots',
+        price: 3999.99,
+        originalPrice: 4049.99,
+        image: 'images/shoes1.png',
+        category: "shoes"
+    },
+
+    {
+        id: 'shoes2',
+        name: 'CD X Boots',
+        price: 2399.99,
+        originalPrice: 2449.99,
+        image: 'images/shoes2.png',
+        category: "shoes"
+    },
+
+    {
+        id: 'shoes3',
+        name: 'Rockstar Boots',
+        price: 3499.99,
+        originalPrice: 3549.99,
+        image: 'images/shoes3.png',
+        category: "shoes"
+    },
+    {
+        id: 'shoes4',
+        name: 'Rockstar Boots',
+        price: 1699.99,
+        originalPrice: 1649.99,
+        image: 'images/shoes4.png',
+        category: "shoes"
+    },
+    {
+        id: 'shoes5',
+        name: 'P Rocks Boots',
+        price: 2599.99,
+        originalPrice: 2649.99,
+        image: 'images/shoes5.png',
+        category: "shoes"
+    },
+
+    {
+        id: 'hat1',
+        name: 'Messed Up Bucket Hats',
+        price: 149.99,
+        originalPrice: 299.99,
+        image: 'images/hat1.png',
+        category: "accessories"
+    },
+
+    {
+        id: 'bag1',
+        name: 'Fuxed Up Bag',
+        price: 199.99,
+        originalPrice: 249.99,
+        image: 'images/bag1.png',
+        category: "accessories"
     }
+
 ];
 
 class ShoppingCart {
