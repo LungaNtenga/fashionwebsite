@@ -666,13 +666,11 @@ class ShoppingCart {
 const cart = new ShoppingCart();
 
 function showSuccessMessage(productName, size) {
-    // Remove any existing notifications
     const existingNotification = document.querySelector('.notification');
     if (existingNotification) {
         existingNotification.remove();
     }
 
-    // Create notification element
     const notification = document.createElement('div');
     notification.className = 'notification';
     notification.innerHTML = `
@@ -680,15 +678,12 @@ function showSuccessMessage(productName, size) {
         <p class="notification-message">${productName} (Size: ${size}) has been added to your cart!</p>
     `;
 
-    // Add to document
     document.body.appendChild(notification);
 
-    // Trigger animation
     setTimeout(() => {
         notification.classList.add('show');
     }, 10);
 
-    // Remove notification after delay
     setTimeout(() => {
         notification.classList.remove('show');
         setTimeout(() => {
@@ -719,6 +714,26 @@ function removeFromCart(id) {
     updateCartDisplay();
 }
 
+function getSizeOptions(category) {
+    if (category === 'shoes') {
+        return `
+            <option value="UK 6">UK 6</option>
+            <option value="UK 7">UK 7</option>
+            <option value="UK 8">UK 8</option>
+            <option value="UK 9">UK 9</option>
+            <option value="UK 10">UK 10</option>
+            <option value="UK 11">UK 11</option>
+        `;
+    } else {
+        return `
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+        `;
+    }
+}
+
 function updateCartDisplay() {
     const cartItems = document.getElementById('cart-items');
     const cartCount = document.getElementById('cart-count');
@@ -733,10 +748,7 @@ function updateCartDisplay() {
                 <div class="size-select">
                     <strong>Size:</strong>
                     <select class="form-select form-select-sm" onchange="updateSize('${item.id}', this.value)">
-                        <option value="S" ${item.size === 'S' ? 'selected' : ''}>S</option>
-                        <option value="M" ${item.size === 'M' ? 'selected' : ''}>M</option>
-                        <option value="L" ${item.size === 'L' ? 'selected' : ''}>L</option>
-                        <option value="XL" ${item.size === 'XL' ? 'selected' : ''}>XL</option>
+                        ${getSizeOptions(item.category)}
                     </select>
                 </div>
                 <p>R${item.price} × ${item.quantity}</p>
@@ -790,10 +802,7 @@ function renderProducts(filter) {
                         <div class="size-select">
                             <strong>Size:</strong>
                             <select class="form-select mb-3" id="size-${p.id}">
-                                <option value="S">S</option>
-                                <option value="M">M</option>
-                                <option value="L">L</option>
-                                <option value="XL">XL</option>
+                                ${getSizeOptions(p.category)}
                             </select>
                         </div>
                         <button class="btn btn-primary" onclick="addToCart('${p.id}', document.getElementById('size-${p.id}').value)">Add to Cart</button>
