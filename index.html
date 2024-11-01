@@ -1,14 +1,13 @@
-<!-- index.html -->
+<!--collection.html-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HIP HOP CARGO - Redefining Style</title>
+    <title>Collections - Hip Hop Cargo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <style>
-        /* Reset and general styles */
         * {
             margin: 0;
             padding: 0;
@@ -16,7 +15,12 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 76px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         .navbar {
@@ -29,89 +33,10 @@
             font-weight: bold;
         }
 
-        .nav-link {
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 0.5rem 1rem !important;
-        }
-
-        .hero {
-            height: 100vh;
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/Hero.png');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            margin-bottom: 3rem;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            padding: 2rem;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .featured-products {
-            padding: 4rem 0;
-        }
-
-        .product-card {
-            margin-bottom: 20px;
-            transition: transform 0.3s;
-            border: none;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .product-card img {
-            height: 300px;
-            object-fit: cover;
-        }
-
-        .card-body {
-            padding: 1.5rem;
-        }
-
         .previous-price {
             text-decoration: line-through;
             color: #999;
             margin-right: 10px;
-        }
-
-        .btn-primary, btn btn-secondary {
-            background-color: #343a40;
-            color: #fff;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .plus{
-            background-color: #23272b;
-        }
-        .btn-primary:hover {
-            background-color: #23272b;
         }
 
         .cart-modal {
@@ -136,12 +61,13 @@
             border-bottom: 1px solid #eee;
             padding: 15px 0;
             display: flex;
-            flex-direction: column;
-            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .cart-item-details {
             flex-grow: 1;
+            padding: 0 15px;
         }
 
         .cart-count {
@@ -158,6 +84,13 @@
         .nav-cart-icon {
             position: relative;
             display: inline-block;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.5rem 1rem !important;
         }
 
         .cart-close {
@@ -178,7 +111,54 @@
             text-align: right;
         }
 
-        /* New styles for quantity controls */
+        .filter-buttons {
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid #343a40;
+        }
+
+        .filter-btn.active {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        .btn-primary {
+            background-color: #343a40;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background-color: #23272b;
+        }
+
+        footer {
+            background-color: #000;
+            color: white;
+            padding: 3rem 0;
+            margin-top: auto;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+
         .quantity-controls {
             display: flex;
             align-items: center;
@@ -202,26 +182,10 @@
             padding: 4px;
         }
 
-        .size-selector {
-            margin: 10px 0;
+        .size-select {
+            margin-bottom: 1rem;
         }
 
-        footer {
-            background-color: #000;
-            color: white;
-            padding: 2rem 0;
-        }
-
-        .social-icons a {
-            color: white;
-            font-size: 1.5rem;
-            margin: 0 10px;
-            transition: color 0.3s;
-        }
-
-        .social-icons a:hover {
-            color: #007bff;
-        }
         .notification {
     position: fixed;
     top: 20px;
@@ -253,14 +217,7 @@
     margin: 0;
 }
 
-
-        
-
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
             .cart-modal {
                 width: 100%;
                 right: -100%;
@@ -269,7 +226,6 @@
     </style>
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">Hip Hop Cargo</a>
@@ -292,26 +248,22 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Redefine Your Style</h1>
-            <p>Discover the Jozi's latest trends and express your unique fashion sense.</p>
-            <a href="collection.html" class="btn btn-outline-light btn-lg">Explore Collections</a>
-        </div>
-    </section>
+    <div class="container mt-5">
+        <h1 class="text-center mb-5">Our Collections</h1>
 
-    <!-- Featured Products -->
-    <section class="featured-products">
-        <div class="container">
-            <h2 class="text-center mb-5">Featured Pieces</h2>
-            <div class="row" id="products-container">
-                <!-- Products will be dynamically inserted here -->
-            </div>
+        <div class="filter-buttons text-center">
+            <button class="btn filter-btn active" data-filter="all">All</button>
+            <button class="btn filter-btn" data-filter="jeans">Jeans</button>
+            <button class="btn filter-btn" data-filter="jackets">Jackets</button>
+            <button class="btn filter-btn" data-filter="shirts">Shirts</button>
+            <button class="btn filter-btn" data-filter="accessories">Accessories</button>
         </div>
-    </section>
 
-    <!-- Cart Modal -->
+        <div class="row" id="products-container">
+            <!-- Products will be dynamically inserted here -->
+        </div>
+    </div>
+
     <div class="cart-modal" id="cart-modal">
         <button class="cart-close" onclick="toggleCart(event)">×</button>
         <h2>Shopping Cart</h2>
@@ -324,7 +276,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <div class="container text-center">
             <div class="social-icons mb-4">
@@ -338,49 +289,30 @@
 
     <script>
         // Product data
-       // Product data
-const products = [
+        const products = [
     {
         id: 'jean1',
         name: 'Elegant Denim Jeans',
-        price: 129.99,
-        originalPrice: 149.99,
-        image: 'images/1.png'
+        price: 159.99,
+        originalPrice: 179.99,
+        image: 'images/1.png',
+        category: 'jeans'
     },
     {
         id: 'jean2',
         name: 'Classic Jeans (N)',
-        price: 89.99,
-        originalPrice: 99.99,
-        image: 'images/2.png'
-    },
-    {
-        id: 'jean3',
-        name: 'Stylish Denim Jeans (F)',
         price: 159.99,
         originalPrice: 179.99,
-        image: 'images/3.png'
+        image: 'images/2.png',
+        category: 'jeans'
     },
     {
         id: 'jacket1',
         name: 'Stylish Denim Jacket',
         price: 159.99,
         originalPrice: 179.99,
-        image: 'images/4.png'
-    },
-    {
-        id: 'jacket2',
-        name: 'Denim Jacket (M)',
-        price: 159.99,
-        originalPrice: 179.99,
-        image: 'images/5.png'
-    },
-    {
-        id: 'shorts1',
-        name: 'Denim Shorts',
-        price: 109.99,
-        originalPrice: 129.99,
-        image: 'images/1.png'
+        image: 'images/5.png',
+        category: 'jackets'
     }
 ];
 
@@ -491,7 +423,7 @@ function updateCartDisplay() {
                 <div class="quantity-controls">
                     <button class="btn btn-secondary btn-sm" onclick="updateQuantity('${item.id}', -1)" ${item.quantity === 1 ? 'disabled' : ''}>−</button>
                     <input type="text" class="form-control mx-2" value="${item.quantity}" readonly>
-                    <button id="plus" class="btn btn-secondary btn-sm" onclick="updateQuantity('${item.id}', 1)">+</button>
+                    <button class="btn btn-secondary btn-sm" onclick="updateQuantity('${item.id}', 1)">+</button>
                 </div>
             </div>
             <button class="btn btn-danger btn-sm" onclick="removeFromCart('${item.id}')">Remove</button>
@@ -526,7 +458,7 @@ function renderProducts(filter) {
     productsContainer.innerHTML = products
         .filter(p => filter === 'all' || p.category === filter)
         .map(p => `
-            <div class="col-md-4 mb-4" >
+            <div class="col-md-4 mb-4">
                 <div class="card">
                     <img src="${p.image}" class="card-img-top" alt="${p.name}">
                     <div class="card-body">
@@ -564,6 +496,8 @@ renderProducts('all');
     </script>
     <script src="https://js.paystack.co/v1/inline.js"></script>
     <script src="paystack.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="/index.js"></script>
 </body>
 </html>
