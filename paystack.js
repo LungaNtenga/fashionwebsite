@@ -1,3 +1,4 @@
+  // Chceckout via PAYSTACK
 document.getElementById('checkout-button').addEventListener('click', function() {
     // Check if cart has items
     if (cart.items.length === 0) {
@@ -38,6 +39,12 @@ document.getElementById('checkout-button').addEventListener('click', function() 
         <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Delivery Information</h3>
         <form id="customerInfoForm" style="display: flex; flex-direction: column; gap: 1rem;">
             <div style="margin-bottom: 1rem;">
+                <label for="name" style="display: block; margin-bottom: 0.5rem;">Full Name *</label>
+                <input type="text" id="name" required 
+                    style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
+            </div>
+            
+            <div style="margin-bottom: 1rem;">
                 <label for="email" style="display: block; margin-bottom: 0.5rem;">Email Address *</label>
                 <input type="email" id="email" required 
                     style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
@@ -76,9 +83,16 @@ document.getElementById('checkout-button').addEventListener('click', function() 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
 
+        const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value;
         const phone = document.getElementById('phone').value;
         const address = document.getElementById('address').value;
+
+        // Validate name 
+        if (name.length < 2) {
+            alert('Please enter a valid full name');
+            return;
+        }
 
         // Validate phone number
         const phoneRegex = /^(\+27|0)[1-9][0-9]{8}$/;
@@ -115,6 +129,11 @@ document.getElementById('checkout-button').addEventListener('click', function() 
             metadata: {
                 custom_fields: [
                     {
+                        display_name: "Full Name",
+                        variable_name: "full_name",
+                        value: name
+                    },
+                    {
                         display_name: "Products",
                         variable_name: "products",
                         value: JSON.stringify(productsList)
@@ -144,6 +163,7 @@ document.getElementById('checkout-button').addEventListener('click', function() 
             callback: function(response) {
                 const orderSummary = `
                     Order Reference: ${response.reference}
+                    Customer: ${name}
                     Subtotal: R${subtotal.toFixed(2)}
                     Shipping: R${shippingCost.toFixed(2)}
                     Total: R${(totalAmount/100).toFixed(2)}
