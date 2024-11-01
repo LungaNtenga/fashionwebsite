@@ -1,13 +1,14 @@
-<!--collection.html-->
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Collections - Hip Hop Cargo</title>
+    <title>HIP HOP CARGO - Redefining Style</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <style>
+        /* Reset and general styles */
         * {
             margin: 0;
             padding: 0;
@@ -15,12 +16,7 @@
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f8f9fa;
-            padding-top: 76px;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            font-family: Arial, sans-serif;
         }
 
         .navbar {
@@ -33,10 +29,89 @@
             font-weight: bold;
         }
 
+        .nav-link {
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.5rem 1rem !important;
+        }
+
+        .hero {
+            height: 100vh;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/hero.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .featured-products {
+            padding: 4rem 0;
+        }
+
+        .product-card {
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
         .previous-price {
             text-decoration: line-through;
             color: #999;
             margin-right: 10px;
+        }
+
+        .btn-primary, btn btn-secondary {
+            background-color: #343a40;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .plus{
+            background-color: #23272b;
+        }
+        .btn-primary:hover {
+            background-color: #23272b;
         }
 
         .cart-modal {
@@ -61,13 +136,12 @@
             border-bottom: 1px solid #eee;
             padding: 15px 0;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            gap: 10px;
         }
 
         .cart-item-details {
             flex-grow: 1;
-            padding: 0 15px;
         }
 
         .cart-count {
@@ -84,13 +158,6 @@
         .nav-cart-icon {
             position: relative;
             display: inline-block;
-        }
-
-        .nav-link {
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 0.5rem 1rem !important;
         }
 
         .cart-close {
@@ -111,54 +178,7 @@
             text-align: right;
         }
 
-        .filter-buttons {
-            margin-bottom: 2rem;
-        }
-
-        .filter-btn {
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 2px solid #343a40;
-        }
-
-        .filter-btn.active {
-            background-color: #343a40;
-            color: #fff;
-        }
-
-        .btn-primary {
-            background-color: #343a40;
-            color: #fff;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .btn-primary:hover {
-            background-color: #23272b;
-        }
-
-        footer {
-            background-color: #000;
-            color: white;
-            padding: 3rem 0;
-            margin-top: auto;
-        }
-
-        .social-icons a {
-            color: white;
-            font-size: 1.5rem;
-            margin: 0 0.5rem;
-            transition: color 0.3s;
-        }
-
+        /* New styles for quantity controls */
         .quantity-controls {
             display: flex;
             align-items: center;
@@ -182,26 +202,73 @@
             padding: 4px;
         }
 
-        .size-select {
-            margin-bottom: 1rem;
+        .size-selector {
+            margin: 10px 0;
         }
 
+        footer {
+            background-color: #000;
+            color: white;
+            padding: 2rem 0;
+        }
+        .address-container {
+        display: flex;
+        align-items: center; /* Aligns the image and text vertically */
+        justify-content: center; /* Centers content horizontally */
+        margin-top: 10px; /* Optional: space above */
+
+        
+}       .address-container p{
+        font-size: 16px;
+}
+
+        .location-icon {
+        width: 18px; /* Set width of the image */
+        height: auto; /* Maintain aspect ratio */
+        margin-right: 8px; /* Space between the image and text */
+        margin-top: -18px;
+
+}         .other{ 
+            display: flex;
+            justify-content: center; /* Centers items horizontally */
+            gap: 15px; /* space between items */
+            margin: 20px 0; /* space above and below */
+        }
+
+        .other a {
+         text-decoration: none; /* Removing underline */
+         color: inherit; 
+
+}         .other a:hover {
+         text-decoration: underline; 
+}  
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #007bff;
+        }
         .notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 15px;
-    background-color: #28a745;
-    color: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    z-index: 9999;
-    opacity: 0;
-    transform: translateX(100%);
-    transition: all 0.5s ease-in-out;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px;
+        background-color: #28a745;
+       color: white;
+       border-radius: 5px;
+       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+       display: flex;
+       align-items: center;
+       gap: 10px;
+       z-index: 9999;
+       opacity: 0;
+       transform: translateX(100%);
+       transition: all 0.5s ease-in-out;
 }
 
 .notification.show {
@@ -217,7 +284,19 @@
     margin: 0;
 }
 
+
+        
+
         @media (max-width: 768px) {
+            .hero {
+             min-height: 70vh; /* Slightly shorter on mobile */
+            background-position: center center;
+            margin-bottom: 2rem;
+       }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
             .cart-modal {
                 width: 100%;
                 right: -100%;
@@ -226,6 +305,7 @@
     </style>
 </head>
 <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">Hip Hop Cargo</a>
@@ -237,6 +317,7 @@
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="collection.html">Collections</a></li>
                     <li class="nav-item"><a class="nav-link" href="lookbook.html">Magazine</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                     <li class="nav-item">
                         <a class="nav-link nav-cart-icon" href="#" onclick="toggleCart(event)">
                             <i class="fas fa-shopping-cart"></i>
@@ -248,22 +329,26 @@
         </div>
     </nav>
 
-    <div class="container mt-5">
-        <h1 class="text-center mb-5">Our Collections</h1>
-
-        <div class="filter-buttons text-center">
-            <button class="btn filter-btn active" data-filter="all">All</button>
-            <button class="btn filter-btn" data-filter="jeans">Jeans</button>
-            <button class="btn filter-btn" data-filter="jackets">Jackets</button>
-            <button class="btn filter-btn" data-filter="shirts">Shirts</button>
-            <button class="btn filter-btn" data-filter="accessories">Accessories</button>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Redefine Your Style</h1>
+            <p>Discover the Jozi's latest trends and express your unique fashion sense.</p>
+            <a href="collection.html" class="btn btn-outline-light btn-lg">Explore Collections</a>
         </div>
+    </section>
 
-        <div class="row" id="products-container">
-            <!-- Products will be dynamically inserted here -->
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="text-center mb-5">Featured Pieces</h2>
+            <div class="row" id="products-container">
+                <!-- Products will be dynamically inserted here -->
+            </div>
         </div>
-    </div>
+    </section>
 
+    <!-- Cart Modal -->
     <div class="cart-modal" id="cart-modal">
         <button class="cart-close" onclick="toggleCart(event)">×</button>
         <h2>Shopping Cart</h2>
@@ -276,43 +361,104 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <!-- Footer -->
     <footer>
         <div class="container text-center">
             <div class="social-icons mb-4">
                 <a href="https://www.instagram.com/hip_hop_cargo/"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.facebook.com/profile.php?id=100063974475179&mibextid=ZbWKwL"><i class="fab fa-facebook"></i></a>
                 <a href="https://za.pinterest.com/HiphopcargoSA/?invite_code=31cac3e10f274be4a5e987d1c310100e&sender=1098104459051012124"><i class="fab fa-pinterest"></i></a>
+                <a href="mailto:hiphopcargo2022@gmail.com"><i class="fas fa-paper-plane"></i></a>
             </div>
             <p>&copy; 2024 Hip Hop Cargo. All rights reserved.</p>
+            <div class="other">
+                <div><a href="about.html"><p>About</p></a></div>
+                <div><a href="terms.html"><p>Terms & Conditions</p></a></div>
+                <div><a href="private.html"><p>Privacy Policy</p></a></div>
+            </div>
+            <div class="address-container">
+                <img src="images/saflag.png" alt="Location Icon" class="location-icon" />
+                <p>267 Fox Street, Johannesburg, South Africa</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Product data
-        const products = [
+       // Product data
+     const products = [
     {
         id: 'jean1',
-        name: 'Elegant Denim Jeans',
-        price: 159.99,
-        originalPrice: 179.99,
-        image: 'images/1.png',
-        category: 'jeans'
+        name: 'Rosemary Pants',
+        price: 449.99,
+        originalPrice: 499.99,
+        image: 'images/cargo4.png'
     },
     {
         id: 'jean2',
-        name: 'Classic Jeans (N)',
-        price: 159.99,
-        originalPrice: 179.99,
-        image: 'images/2.png',
-        category: 'jeans'
+        name: 'Cargo Pants',
+        price: 649.99,
+        originalPrice: 699.99,
+        image: 'images/cargo5.png'
     },
+
+    {
+        id: 'skirt1',
+        name: 'Diced Up Skirt',
+        price: 349.99,
+        originalPrice: 399.99,
+        image: 'images/skirt1.png'
+    },
+
+    {
+        id: 'jean3',
+        name: 'Limbo Jorts',
+        price: 399.99,
+        originalPrice: 449.99,
+        image: 'images/cargo.png'
+    },
+
+    {
+        id: 'jean4',
+        name: 'Riot Pants',
+        price: 699.99,
+        originalPrice: 749.99,
+        image: 'images/cargo1.png'
+    },
+
+    
+
+    {
+        id: 'jean5',
+        name: 'Patched Pants',
+        price: 499.99,
+        originalPrice: 549.99,
+        image: 'images/cargo2.png'
+    },
+
+    {
+        id: 'jean6',
+        name: 'Patched Pants',
+        price: 399.99,
+        originalPrice: 449.99,
+        image: 'images/cargo3.png'
+    },
+
     {
         id: 'jacket1',
-        name: 'Stylish Denim Jacket',
-        price: 159.99,
-        originalPrice: 179.99,
-        image: 'images/5.png',
-        category: 'jackets'
+        name: 'Orange Vest',
+        price: 399.99,
+        originalPrice: 449.99,
+        image: 'images/jersey2.png'
+    },
+
+
+    {
+        id: 'jean7',
+        name: 'Bootleg Jeans',
+        price: 449.99,
+        originalPrice: 499.99,
+        image: 'images/cargo7.png'
     }
 ];
 
@@ -423,7 +569,7 @@ function updateCartDisplay() {
                 <div class="quantity-controls">
                     <button class="btn btn-secondary btn-sm" onclick="updateQuantity('${item.id}', -1)" ${item.quantity === 1 ? 'disabled' : ''}>−</button>
                     <input type="text" class="form-control mx-2" value="${item.quantity}" readonly>
-                    <button class="btn btn-secondary btn-sm" onclick="updateQuantity('${item.id}', 1)">+</button>
+                    <button id="plus" class="btn btn-secondary btn-sm" onclick="updateQuantity('${item.id}', 1)">+</button>
                 </div>
             </div>
             <button class="btn btn-danger btn-sm" onclick="removeFromCart('${item.id}')">Remove</button>
@@ -458,7 +604,7 @@ function renderProducts(filter) {
     productsContainer.innerHTML = products
         .filter(p => filter === 'all' || p.category === filter)
         .map(p => `
-            <div class="col-md-4 mb-4">
+            <div class="col-md-4 mb-4" >
                 <div class="card">
                     <img src="${p.image}" class="card-img-top" alt="${p.name}">
                     <div class="card-body">
@@ -496,8 +642,7 @@ renderProducts('all');
     </script>
     <script src="https://js.paystack.co/v1/inline.js"></script>
     <script src="paystack.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-    <script src="/index.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
