@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions - Hip Hop Cargo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        /* Reset and general styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #000;
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.5rem 1rem !important;
+        }
+
+        .btn-primary {
+            background-color: #343a40;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            width: 50%;
+        }
+
+        .plus {
+            background-color: #23272b;
+        }
+
+        .btn-primary:hover {
+            background-color: #23272b;
+        }
+
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            bottom: 0;
+            width: 400px;
+            background: white;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: right 0.3s ease-in-out;
+            z-index: 1050;
+            overflow-y: auto;
+        }
+
+        .cart-modal.active {
+            right: 0;
+        }
+
+        .cart-item {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+
+        .nav-cart-icon {
+            position: relative;
+            display: inline-block;
+        }
+
+        .cart-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #000;
+        }
+
+        .cart-total {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            text-align: right;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .quantity-controls button {
+            width: 30px;
+            height: 30px;
+            background: #23272b;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .other {
+            display: flex;
+            justify-content: center; /* Centers items horizontally */
+            gap: 15px; /* space between items */
+            margin: 20px 0; /* space above and below */
+        }
+
+        .other a {
+            text-decoration: none; /* Removing underline */
+            color: inherit;
+        }
+
+        .other a:hover {
+            text-decoration: underline;
+        }
+
+        .quantity-controls input {
+            width: 50px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 4px;
+        }
+
+        .size-selector {
+            margin: 10px 0;
+        }
+
+        footer {
+            background-color: #000;
+            color: white;
+            padding: 2rem 0;
+        }
+
+        .address-container {
+            display: flex;
+            align-items: center; /* Aligns the image and text vertically */
+            justify-content: center; /* Centers content horizontally */
+            margin-top: 10px; /* Optional: space above */
+        }
+
+        .address-container p {
+            font-size: 16px;
+        }
+
+        .location-icon {
+            width: 18px; /* Set width of the image */
+            height: auto; /* Maintain aspect ratio */
+            margin-right: 8px; /* Space between the image and text */
+            margin-top: -18px;
+        }
+
+        #start {
+            margin-top: 10rem;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #007bff;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 9999;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.5s ease-in-out;
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .notification-icon {
+            font-size: 20px;
+        }
+
+        .notification-message {
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .cart-modal {
+                width: 100%;
+                right: -100%;
+            }
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.5rem; /* Smaller size for h2 */
+            text-align: center;
+        }
+
+        ul {
+            text-align: center;
+            text-decoration: none;
+            list-style-type: none; /* Remove bullet points */
+            padding: 0; /* Remove default padding */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Hip Hop Cargo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="collection.html">Collections</a></li>
+                    <li class="nav-item"><a class="nav-link" href="lookbook.html">Magazine</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-cart-icon" href="#" onclick="toggleCart(event)">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count" id="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5" id="container">
+        <h1 class="mb-4" id="start">Terms and Conditions</h1>
+
+        <h2>Delivery and Shipping</h2>
+        <ul>
+            <li>All orders will be delivered via PEP Paxi delivery services within South Africa.</li>
+            <li>Standard delivery time is 5-10 business days.</li>
+            <li>Delivery fees are calculated at checkout based on the size and weight of your order.</li>
+        </ul>
+
+        <h2>Returns and Exchanges</h2>
+        <ul>
+            <li>We do not offer refunds, but you can exchange items within 14 days of delivery.</li>
+            <li>Items must be unworn, unwashed, and in their original condition with tags attached.</li>
+            <li>Shipping fees for exchanges are the responsibility of the customer.</li>
+        </ul>
+
+        <h2>Payment</h2>
+        <ul>
+            <li>We accept payment via Visa, Mastercard, and Paystack.</li>
+            <li>All prices displayed on our website are in South African Rand (ZAR).</li>
+            <li>By placing an order, you agree to pay the total amount due, including any applicable taxes and fees.</li>
+        </ul>
+
+        <h2>Privacy and Data Protection</h2>
+        <ul>
+            <li>We are committed to protecting your personal information.</li>
+            <li>Our full Privacy Policy is available on our website.</li>
+        </ul>
+
+        <h2>General Terms</h2>
+        <ul>
+            <li>We reserve the right to modify these Terms and Conditions at any time without prior notice.</li>
+            <li>Use of this website and placing orders constitutes acceptance of these Terms and Conditions.</li>
+            <li>All content on this website, including images and text, is the property of Hip Hop Cargo and may not be used without permission.</li>
+            <li>If any part of these Terms and Conditions is deemed unlawful or unenforceable, the remaining provisions shall remain in full force and effect.</li>
+        </ul>
+
+        <p>Please contact us at hiphopcargo2022@gmail.com if you have any questions or concerns.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <div class="social-icons mb-4">
+                <a href="https://www.instagram.com/hip_hop_cargo/"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=100063974475179&mibextid=ZbWKwL"><i class="fab fa-facebook"></i></a>
+                <a href="https://za.pinterest.com/HiphopcargoSA/?invite_code=31cac3e10f274be4a5e987d1c310100e&sender=1098104459051012124"><i class="fab fa-pinterest"></i></a>
+                <a href="mailto:hiphopcargo2022@gmail.com"><i class="fas fa-paper-plane"></i></a>
+            </div>
+            <p>&copy; 2024 Hip Hop Cargo. All rights reserved.</p>
+            <div class="other">
+                <div><a href="about.html"><p>About</p></a></div>
+                <div><a href="terms.html"><p>Terms & Conditions</p></a></div>
+                <div><a href="private.html"><p>Privacy Policy</p></a></div>
+            </div>
+            <div class="address-container">
+                <img src="images/saflag.png" alt="Location Icon" class="location-icon" />
+                <p>267 Fox Street, Johannesburg, South Africa</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script src="paystack.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
