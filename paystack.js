@@ -122,7 +122,7 @@ document.getElementById('checkout-button').addEventListener('click', function() 
 
         // Initialize Paystack
         const handler = PaystackPop.setup({
-            key: 'pk_test_fdab4190558d6df2be1b07d24789e1e184a3e225',
+            key: 'pk_live_a26a49da9d841fc6908df98bd16833a082ef17ef',
             email: email,
             amount: totalAmount,
             currency: 'ZAR',
